@@ -1,0 +1,43 @@
+@font-face {
+    font-family: SpecialFont;
+    src: url(../fonts/W_parvaz.TTF);
+}
+
+body {
+    background-color: lightcyan;
+
+}
+
+.header {
+    margin: 2% 3%;
+    height: 25%;
+    padding-bottom: 10px;
+    padding-left: 1%;
+    padding-right: 3%;
+    background-color: rgb(100, 220, 250);
+    border-radius: 1%;
+}
+
+.UserImg,
+.ShopImg {
+    margin: 5px;
+    cursor: pointer;
+}
+
+.ShopName {
+    font-family: SpecialFont;
+    font-size: 30px;
+}
+.searchinput {
+    border-radius: 10px;
+    width: 100%;
+    border: none;
+}
+.searchinput:focus{
+    outline: none;
+    box-shadow: 0px 0px 15px #888888;
+}
+.searchinput:hover
+{
+    box-shadow: 0px 0px 15px #888888;
+}
