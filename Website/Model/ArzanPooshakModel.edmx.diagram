@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5233335f09f34fd9bfbb57879fc107c9" Name="Diagram1">
+        <EntityTypeShape EntityType="ArzanPooshakModel.BrandTBL" Width="1.5" PointX="2.25" PointY="2" />
+        <EntityTypeShape EntityType="ArzanPooshakModel.ProductTBL" Width="1.5" PointX="4.75" PointY="2.75" />
+        <EntityTypeShape EntityType="ArzanPooshakModel.TypeTBL" Width="1.5" PointX="2.25" PointY="4.125" />
+        <AssociationConnector Association="ArzanPooshakModel.FK_t_Product_t_BrandName" />
+        <AssociationConnector Association="ArzanPooshakModel.Product_Type" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

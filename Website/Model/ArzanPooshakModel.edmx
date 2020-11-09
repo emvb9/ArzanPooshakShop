@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ArzanPooshakModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="t_BrandName">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IconName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandId" Type="int" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="productCoverPhoto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sizes" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IconName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_t_Product_t_BrandName">
+          <End Role="t_BrandName" Type="Self.t_BrandName" Multiplicity="1" />
+          <End Role="t_Product" Type="Self.t_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_BrandName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Product_Type">
+          <End Role="t_Type" Type="Self.t_Type" Multiplicity="1" />
+          <End Role="t_Product" Type="Self.t_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Product">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ArzanPooshakModelStoreContainer">
+          <EntitySet Name="t_BrandName" EntityType="Self.t_BrandName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Product" EntityType="Self.t_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Type" EntityType="Self.t_Type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_t_Product_t_BrandName" Association="Self.FK_t_Product_t_BrandName">
+            <End Role="t_BrandName" EntitySet="t_BrandName" />
+            <End Role="t_Product" EntitySet="t_Product" />
+          </AssociationSet>
+          <AssociationSet Name="Product_Type" Association="Self.Product_Type">
+            <End Role="t_Type" EntitySet="t_Type" />
+            <End Role="t_Product" EntitySet="t_Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ArzanPooshakModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BrandTBLs" EntityType="ArzanPooshakModel.BrandTBL" />
+          <EntitySet Name="ProductTBLs" EntityType="ArzanPooshakModel.ProductTBL" />
+          <EntitySet Name="TypeTBLs" EntityType="ArzanPooshakModel.TypeTBL" />
+          <AssociationSet Name="FK_t_Product_t_BrandName" Association="ArzanPooshakModel.FK_t_Product_t_BrandName">
+            <End Role="t_BrandName" EntitySet="BrandTBLs" />
+            <End Role="t_Product" EntitySet="ProductTBLs" />
+          </AssociationSet>
+          <AssociationSet Name="Product_Type" Association="ArzanPooshakModel.Product_Type">
+            <End Role="t_Type" EntitySet="TypeTBLs" />
+            <End Role="t_Product" EntitySet="ProductTBLs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BrandTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IconName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LstProduct" Relationship="ArzanPooshakModel.FK_t_Product_t_BrandName" FromRole="t_BrandName" ToRole="t_Product" />
+        </EntityType>
+        <EntityType Name="ProductTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandId" Type="Int32" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="productCoverPhoto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sizes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ObjBrand" Relationship="ArzanPooshakModel.FK_t_Product_t_BrandName" FromRole="t_Product" ToRole="t_BrandName" />
+          <NavigationProperty Name="ObjType" Relationship="ArzanPooshakModel.Product_Type" FromRole="t_Product" ToRole="t_Type" />
+        </EntityType>
+        <EntityType Name="TypeTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IconName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LstProduct" Relationship="ArzanPooshakModel.Product_Type" FromRole="t_Type" ToRole="t_Product" />
+        </EntityType>
+        <Association Name="FK_t_Product_t_BrandName">
+          <End Type="ArzanPooshakModel.BrandTBL" Role="t_BrandName" Multiplicity="1" />
+          <End Type="ArzanPooshakModel.ProductTBL" Role="t_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_BrandName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Product_Type">
+          <End Type="ArzanPooshakModel.TypeTBL" Role="t_Type" Multiplicity="1" />
+          <End Type="ArzanPooshakModel.ProductTBL" Role="t_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Product">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ArzanPooshakModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="BrandTBLs">
+            <EntityTypeMapping TypeName="ArzanPooshakModel.BrandTBL">
+              <MappingFragment StoreEntitySet="t_BrandName">
+                <ScalarProperty Name="IconName" ColumnName="IconName" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTBLs">
+            <EntityTypeMapping TypeName="ArzanPooshakModel.ProductTBL">
+              <MappingFragment StoreEntitySet="t_Product">
+                <ScalarProperty Name="Sizes" ColumnName="Sizes" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="productCoverPhoto" ColumnName="productCoverPhoto" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeTBLs">
+            <EntityTypeMapping TypeName="ArzanPooshakModel.TypeTBL">
+              <MappingFragment StoreEntitySet="t_Type">
+                <ScalarProperty Name="IconName" ColumnName="IconName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

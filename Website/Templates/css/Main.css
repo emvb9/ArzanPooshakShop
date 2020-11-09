@@ -5,7 +5,10 @@
 
 body {
     background-color: lightcyan;
+}
 
+.body {
+    margin-top: 10px;
 }
 
 .header {

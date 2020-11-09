@@ -43,7 +43,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -68,6 +76,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="Model\ArzanPooshakModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ArzanPooshakModel.Context.cs</LastGenOutput>
+      <DependentUpon>ArzanPooshakModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\ArzanPooshakModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ArzanPooshakModel.edmx</DependentUpon>
+      <LastGenOutput>ArzanPooshakModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Templates\css\bootstrap-grid.css" />
     <Content Include="Templates\css\bootstrap-grid.min.css" />
     <Content Include="Templates\css\bootstrap-reboot.css" />
@@ -83,6 +101,10 @@
     <Content Include="Templates\js\bootstrap.js" />
     <Content Include="Templates\js\bootstrap.min.js" />
     <Content Include="Templates\js\npm.js" />
+    <Content Include="Templates\Photos\Icons\Jean.png" />
+    <Content Include="Templates\Photos\Icons\Coat.png" />
+    <Content Include="Templates\Photos\Icons\Socks.png" />
+    <Content Include="Templates\Photos\Icons\Shirt.png" />
     <Content Include="Templates\Photos\Shop.png" />
     <Content Include="Templates\Photos\user.png" />
     <Content Include="Web.config" />
@@ -95,9 +117,40 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\ArzanPooshakModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArzanPooshakModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ArzanPooshakModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArzanPooshakModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ArzanPooshakModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArzanPooshakModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BrandTBL.cs">
+      <DependentUpon>ArzanPooshakModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ProductTBL.cs">
+      <DependentUpon>ArzanPooshakModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TypeTBL.cs">
+      <DependentUpon>ArzanPooshakModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="Model\ArzanPooshakModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ArzanPooshakModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model\ArzanPooshakModel.edmx.diagram">
+      <DependentUpon>ArzanPooshakModel.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Templates\css\.DS_Store" />
     <Content Include="Templates\css\bootstrap-grid.css.map" />
@@ -125,6 +178,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
