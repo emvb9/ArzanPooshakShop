@@ -36,7 +36,13 @@
     </div>
     <div class="body">
         <div class="row">
-
+            <asp:Repeater runat="server">
+                <ItemTemplate>
+                    <div class="card" style="width: 30%">
+                        <img class="card-img-top" src='<%=Eval("img") %>' alt=""/>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
     </div>
 </body>
